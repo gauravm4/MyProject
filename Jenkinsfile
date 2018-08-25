@@ -7,8 +7,22 @@ pipeline {
       }
     }
     stage('Test') {
-      steps {
-        echo 'Testing.... successful'
+      parallel {
+        stage('Test') {
+          steps {
+            echo 'Testing.... successful'
+          }
+        }
+        stage('Test install') {
+          steps {
+            echo 'Testing installation... successful'
+          }
+        }
+        stage('Test upgrade') {
+          steps {
+            echo 'Testing upgrade... successful'
+          }
+        }
       }
     }
     stage('Deploy') {
